@@ -14,11 +14,11 @@
 <body>
     <div id="Title">AQMS</div>
     <div>
-        <canvas id="myCanvas" height="600" width="600"></canvas>
+        <canvas id="myCanvas" height="50" width="100"></canvas>
         <script>
             const socket= io();
 let counter=0;
-socket.on("arduino:data",(arduinoData)=>{
+socket.on("arduino:co2",(arduinoData)=>{
     myChart.data.labels.push(counter);
     myChart.data.datasets.forEach(dataset => {
         dataset.data.push(arduinoData.value);
@@ -36,10 +36,10 @@ var ctx = document.getElementById("myCanvas").getContext('2d');
 var myChart = new Chart(ctx, {
 type: 'line',
 data: {
-labels: ["Serial"],
+labels: ["CO2"],
 datasets: [{
-    label: 'Serial',
-    backgroundColor:'rgba(255, 99, 132, 0.2)',
+    label: 'Co2',
+    backgroundColor:'rgba(254, 90, 0, 0.5)',
     borderColor: 'rgba(255, 159, 64, 1)',
     borderWidth: 1,
     data: []
