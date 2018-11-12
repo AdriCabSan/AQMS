@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js" charset="utf-8"></script>
+    <script src="/socket.io/socket.io.js" charset= "utf-8"></script>
+    <script src="/Server/DataStructures.js"></script>
+    <script src="/Server/GraphFunctionality.js"></script>
+
+</head>
+<body>
+    <div id="Title">AQMS</div>
+    <div>
+        <canvas id="myCanvas" height="600" width="600"></canvas>
+        <script>
+            const socket= io();
+let counter=0;
+socket.on("arduino:data",(arduinoData)=>{
+    myChart.data.labels.push(counter);
+    myChart.data.datasets.forEach(dataset => {
+        dataset.data.push(arduinoData.value);
+    });    
+    counter++;
+    if (counter > 5){
+        myChart.data.labels.shift(counter);
+        myChart.data.datasets.forEach(dataset => {
+            dataset.data.shift(arduinoData.value);
+        });    
+    }
+    myChart.update();
+});
+var ctx = document.getElementById("myCanvas").getContext('2d');
+var myChart = new Chart(ctx, {
+type: 'line',
+data: {
+labels: ["Serial"],
+datasets: [{
+    label: 'Serial',
+    backgroundColor:'rgba(255, 99, 132, 0.2)',
+    borderColor: 'rgba(255, 159, 64, 1)',
+    borderWidth: 1,
+    data: []
+}]
+},
+options: {
+scales: {
+    yAxes: [{
+        ticks: {
+            beginAtZero:true
+        }
+    }]
+}
+}
+});
+        </script>
+    </div>
+    
+  
+</body>
+</html>
