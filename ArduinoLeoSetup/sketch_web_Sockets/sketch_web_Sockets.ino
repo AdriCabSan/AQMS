@@ -64,7 +64,7 @@ void loop() {
     tvoc = mySensor.getTVOC();  
   }else {
     Serial.print("CCS811 no disponible!\n\n");
-    while (1); //Hang if there was a problem.
+    
   }
   delay(1000);
   printData(temp,hum,co2,tvoc);

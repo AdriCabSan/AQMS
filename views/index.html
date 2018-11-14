@@ -71,16 +71,6 @@
                     <canvas id="tempChart"></canvas>
                 </div>
             </div>
-       <!--- <div class="third widget">
-            <div class="chart-legend">
-                <h3>Customer Service Assessment</h3>
-                <p>based on words mentioned</p>
-                <p><a href="" class="button">Track another word</a></p>
-            </div>
-            <div class="canvas-container">
-                <canvas id="tempRadar"></canvas>
-            </div>
-        </div> -->
 
         </div>
         <div class="push"></div>
@@ -118,7 +108,7 @@ socket.on("arduino:tvoc",(arduinoData)=>{
         dataset.data.push(arduinoData.value);
     });    
     counter++;
-    if (counter > 30){
+    if (counter > 13){
         myChart.data.labels.shift(counter);
         myChart.data.datasets.forEach(dataset => {
             dataset.data.shift(arduinoData.value);
@@ -161,7 +151,7 @@ let counterCo=0;
             dataset.data.push(arduinoData.value);
         });    
         counterCo++;
-        if (counterCo > 30){
+        if (counterCo > 13){
             co2Chart.data.labels.shift(counterCo);
             co2Chart.data.datasets.forEach(dataset => {
                 dataset.data.shift(arduinoData.value);
@@ -204,7 +194,7 @@ let counterHum=0;
             dataset.data.push(arduinoData.value);
         });    
         counterHum++;
-        if (counterHum > 30){
+        if (counterHum > 13){
             humChart.data.labels.shift(counterHum);
             humChart.data.datasets.forEach(dataset => {
                 dataset.data.shift(arduinoData.value);
@@ -247,7 +237,7 @@ let counterTemp=0;
             dataset.data.push(arduinoData.value);
         });    
         counterTemp++;
-        if (counterTemp > 30){
+        if (counterTemp > 13){
             tempChart.data.labels.shift(counterTemp);
             tempChart.data.datasets.forEach(dataset => {
                 dataset.data.shift(arduinoData.value);

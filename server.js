@@ -25,18 +25,17 @@ const mySerial = new SerialPort("COM4",{
 server.listen(3000,()   => console.log('server on port: ',3000));
 io.on('connection',()   => console.log('A new socket has connected'));
 
-mySerial.on("err",err   => console.log(err.message));
-mySerial.on("open",()   => console.log("Opened Serial Port"));
 mySerial.on("data",data => {
 
     dataStream=data.toString();
     console.log(dataStream);
     let arr = dataStream.split(",").map(item => item.trim());
-    temperature=arr[0];
-    tVOC = arr[1];
+    temperature=arr[0];     
+    humidity = arr[1];
     Co2= arr[2];
-    humidity = arr[3];
-    console.log(`Temp:${temperature}, TVOC:${tVOC}, Co2:${Co2}, humidity:${humidity}`);
+    tVOC = arr[3];
+    
+    console.log(`Temp:${temperature}, humidity:${humidity}, Co2:${Co2}, TVOC:${tVOC}`);
 
     io.emit('arduino:temp',{
         value:temperature
@@ -52,4 +51,5 @@ mySerial.on("data",data => {
     });
     
 });
-
+mySerial.on("err",err   => console.log(err.message));
+mySerial.on("open",()   => console.log("Opened Serial Port"));
