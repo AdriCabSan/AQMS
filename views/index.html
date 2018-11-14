@@ -19,7 +19,7 @@
       <div class="wrapper">
         <header>
             <div class="container clearfix">
-                <h1>Overview <span>July 8-12, 2013</span><a class="button">Change Date Range</a></h1>
+                <h1>Overview <span>Noviembre 14, 2018</span><a class="button">Cambiar Rango de Fecha</a></h1>
             </div>
         </header>
 
@@ -27,9 +27,9 @@
           <!--TVOC CHART-->
           <div class="third widget line">
             <div class="chart-legend">
-                <h3>TVOC in PPM vs Time</h3>
-                <p><span>This Week</span> &mdash; <strong>Last Week</strong></p>
-                <p><a href="" class="button">Change Date Range</a><a href="" class="button">Filter by Location</a></p>
+                <h3>TVOC in PPM vs Seg</h3>
+                <p><span>Esta semana</span> &mdash; <strong>Semana Pasada</strong></p>
+                <p><a href="" class="button">Cambiar Rango de Fechas</a><a href="" class="button">Filtrar por Ubicacion</a></p>
             </div>
             <div class="canvas-container">
                 <canvas id="tvocChart"></canvas>
@@ -39,9 +39,9 @@
         <!--Co2 CHART-->
         <div class="third widget line">
             <div class="chart-legend">
-                <h3>Co2 in PPM vs Time</h3>
-                <p><span>This Week</span> &mdash; <strong>Last Week</strong></p>
-                <p><a href="" class="button">Change Date Range</a><a href="" class="button">Filter by Location</a></p>
+                <h3>Co2 en PPM vs Seg</h3>
+                <p><span>Esta semana</span> &mdash; <strong>Semana Pasada</strong></p>
+                <p><a href="" class="button">Cambiar Rango de Fechas</a><a href="" class="button">Filtrar por Ubicacion</a></p>
             </div>
             <div class="canvas-container">
                 <canvas id="co2Chart"></canvas>
@@ -51,16 +51,27 @@
          <!--HUMIDITY CHART-->
          <div class="third widget line">
                 <div class="chart-legend">
-                    <h3>Humidity</h3>
-                    <p><span>This Week</span> &mdash; <strong>Last Week</strong></p>
-                    <p><a href="" class="button">Change Date Range</a><a href="" class="button">Filter by Location</a></p>
+                    <h3>Humedad</h3>
+                    <p><span>Esta semana</span> &mdash; <strong>Semana Pasada</strong></p>
+                <p><a href="" class="button">Cambiar Rango de Fechas</a><a href="" class="button">Filtrar por Ubicacion</a></p>
                 </div>
                 <div class="canvas-container">
                     <canvas id="humChart"></canvas>
                 </div>
             </div>
         
-        <div class="third widget">
+            <!--Temperature CHART-->
+            <div class="third widget line">
+                <div class="chart-legend">
+                    <h3>Temperatura</h3>
+                    <p><span>Esta semana</span> &mdash; <strong>Semana Pasada</strong></p>
+                <p><a href="" class="button">Cambiar Rango de Fechas</a><a href="" class="button">Filtrar por Ubicacion</a></p>
+                </div>
+                <div class="canvas-container">
+                    <canvas id="tempChart"></canvas>
+                </div>
+            </div>
+       <!--- <div class="third widget">
             <div class="chart-legend">
                 <h3>Customer Service Assessment</h3>
                 <p>based on words mentioned</p>
@@ -69,7 +80,7 @@
             <div class="canvas-container">
                 <canvas id="tempRadar"></canvas>
             </div>
-        </div>
+        </div> -->
 
         </div>
         <div class="push"></div>
@@ -226,22 +237,48 @@ let counterHum=0;
     }
     });
 
-//temperature chart
-var canvas = document.getElementById("tempRadar");
-var ctx = canvas.getContext("2d");
-var data = {
-    labels : ["Helpful","Friendly","Kind","Rude","Slow","Frustrating"],
-    datasets : [
-        {
-            fillColor : "rgba(220,220,220,0.5)",
-            strokeColor : "#637b85",
-            pointColor : "#dbba34",
-            pointStrokeColor : "#637b85",
-            data : [65,59,90,81,30,56]
+//TEMPERATURE chart
+let counterTemp=0;
+    socket.on("arduino:temp",(arduinoData)=>{
+        //secondsPassed = timer.getTotalTimeValues().seconds;
+        //console.log(secondsPassed);
+        tempChart.data.labels.push(counterTemp);
+        tempChart.data.datasets.forEach(dataset => {
+            dataset.data.push(arduinoData.value);
+        });    
+        counterTemp++;
+        if (counterTemp > 30){
+            tempChart.data.labels.shift(counterTemp);
+            tempChart.data.datasets.forEach(dataset => {
+                dataset.data.shift(arduinoData.value);
+            });    
         }
-    ]
-}
-var tempRadar = new Chart(ctx).Radar(data, options);
+        tempChart.update();
+    });
+    // TEMPERATURE chart DEFINITION
+    var ctx = document.getElementById("tempChart").getContext('2d');
+    var tempChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+    labels: ["Temperature"],
+    datasets: [{
+        label: 'C° vs seg',
+        backgroundColor:'rgba(59, 99, 210, 0.5)',
+        borderColor: 'rgba(31, 53, 112, 1)',
+        borderWidth: 1,
+        data: [-20,-15,-10,-5,0,5,10,15,20,25,30,35]
+    }]
+    },
+    options: {
+    scales: {
+        yAxes: [{
+            ticks: {
+                beginAtZero:true
+            }
+        }]
+    }
+    }
+    });
     
         </script>
 </body>

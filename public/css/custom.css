@@ -5,6 +5,9 @@ body {
     font-family: 'Source Sans Pro', sans-serif;
     color: #666;
 }
+.wrapper {
+    background:  rgb(168, 252, 203);
+}
 /* button */
 .button {
     cursor: pointer;
