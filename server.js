@@ -8,9 +8,9 @@ const io = socketIO.listen(server);
 
 let temperature,tVOC,Co2,humidity;
 
-
+app.use(express.static('public/'));
 app.get('/',(req,res,next)=> {
-    res.sendFile(__dirname +'/index.html');
+    res.sendFile(__dirname + '/views/index.html');
 });
 
 const SerialPort = require('serialport');
@@ -22,15 +22,15 @@ const mySerial = new SerialPort("COM4",{
 });
 
 
-server.listen(3000,()    => console.log('server on port: ',3000));
-io.on('connection',()    => console.log('A new socket has connected'));
+server.listen(3000,()   => console.log('server on port: ',3000));
+io.on('connection',()   => console.log('A new socket has connected'));
 
 mySerial.on("err",err   => console.log(err.message));
 mySerial.on("open",()   => console.log("Opened Serial Port"));
 mySerial.on("data",data => {
 
     dataStream=data.toString();
-    //console.log(dataStream);
+    console.log(dataStream);
     let arr = dataStream.split(",").map(item => item.trim());
     temperature=arr[0];
     tVOC = arr[1];

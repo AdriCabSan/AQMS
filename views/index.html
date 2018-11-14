@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- Bootstrap -->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="/bootstrap-3.3.7-dist/css/bootstrap.min.css" type="text/css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <!-- Custom Theme Style -->
+    <link src="/build/css/custom.min.css" rel="stylesheet" type="text/css">
+
+</head>
+    <body class="nav-md">
+        <div class="container body">
+          <div class="main_container">
+            <div class="col-md-3 left_col">
+              <div class="left_col scroll-view">
+                <div class="navbar nav_title" style="border: 0;">
+                  <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>AQMS</span></a>
+                </div>
+    
+                <div class="clearfix"></div>
+    
+                <!-- menu profile quick info -->
+                <div class="profile">
+                  <div class="profile_pic">
+                    <img src="images/img.jpg" alt="..." class="img-circle profile_img">
+                  </div>
+                  <div class="profile_info">
+                    <span>Welcome,</span>
+                    <h2>John Doe</h2>
+                  </div>
+                </div>
+                <!-- /menu profile quick info -->
+    
+                <br />
+    
+                <!-- sidebar menu -->
+                <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                  <div class="menu_section">
+                    <h3>General</h3>
+                    <ul class="nav side-menu">
+                      <li><a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
+                        <ul class="nav child_menu">
+                          <li><a href="index.html">Dashboard</a></li>
+                          <li><a href="index2.html">Dashboard2</a></li>
+                          <li><a href="index3.html">Dashboard3</a></li>
+                        </ul>
+                      </li>
+                     
+                     
+                      <li><a><i class="fa fa-clone"></i>Layouts <span class="fa fa-chevron-down"></span></a>
+                        <ul class="nav child_menu">
+                          <li><a href="fixed_sidebar.html">Fixed Sidebar</a></li>
+                          <li><a href="fixed_footer.html">Fixed Footer</a></li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <!-- /sidebar menu -->
+    
+                <!-- /menu footer buttons -->
+                <div class="sidebar-footer hidden-small">
+                  <a data-toggle="tooltip" data-placement="top" title="Settings">
+                    <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+                  </a>
+                  <a data-toggle="tooltip" data-placement="top" title="FullScreen">
+                    <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
+                  </a>
+                  <a data-toggle="tooltip" data-placement="top" title="Lock">
+                    <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
+                  </a>
+                  <a data-toggle="tooltip" data-placement="top" title="Logout">
+                    <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+                  </a>
+                </div>
+                <!-- /menu footer buttons -->
+              </div>
+            </div>
+    
+            <!-- top navigation -->
+            <div class="top_nav">
+              <div class="nav_menu">
+                <nav>
+                  <div class="nav toggle">
+                    <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+                  </div>
+    
+                  <ul class="nav navbar-nav navbar-right">
+                    <li class="">
+                      <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                        <img src="images/img.jpg" alt="">John Doe
+                        <span class=" fa fa-angle-down"></span>
+                      </a>
+                      <ul class="dropdown-menu dropdown-usermenu pull-right">
+                        <li><a href="javascript:;"> Profile</a></li>
+                        <li>
+                          <a href="javascript:;">
+                            <span class="badge bg-red pull-right">50%</span>
+                            <span>Settings</span>
+                          </a>
+                        </li>
+                        <li><a href="javascript:;">Help</a></li>
+                        <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+                      </ul>
+                    </li>
+    
+                    <li role="presentation" class="dropdown">
+                      <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
+                        <i class="fa fa-envelope-o"></i>
+                        <span class="badge bg-green">6</span>
+                      </a>
+                      <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
+                        <li>
+                          <a>
+                            <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
+                            <span>
+                              <span>random</span>
+                              <span class="time">3 mins ago</span>
+                            </span>
+                            <span class="message">
+                             Temperature above normal level
+                            </span>
+                          </a>
+                        </li>
+                        
+                        <li>
+                          <div class="text-center">
+                            <a>
+                              <strong>See All Alerts</strong>
+                              <i class="fa fa-angle-right"></i>
+                            </a>
+                          </div>
+                        </li>
+                      </ul>
+                    </li>
+                  </ul>
+                </nav>
+              </div>
+            </div>
+            <!-- /top navigation -->
+    
+            
+    
+                <div class="clearfix"></div>
+    
+                <div class="row">
+                  <div class="col-md-6 col-sm-6 col-xs-12">
+                    <div class="x_panel">
+                      <div class="x_title">
+                        <h2>TVOC graph<small>in ppm vs time</small></h2>
+                        <ul class="nav navbar-right panel_toolbox">
+                          <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                          </li>
+                          <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                            <ul class="dropdown-menu" role="menu">
+                              <li><a href="#">Settings 1</a>
+                              </li>
+                              <li><a href="#">Settings 2</a>
+                              </li>
+                            </ul>
+                          </li>
+                          <li><a class="close-link"><i class="fa fa-close"></i></a>
+                          </li>
+                        </ul>
+                        <div class="clearfix"></div>
+                      </div>
+                      <div class="x_content">
+                      <!--tvocChart-->
+                      <canvas id="tvocChart"></canvas>
+                      </div>
+                    </div>
+                  </div>
+    
+                  <div class="col-md-6 col-sm-6 col-xs-12">
+                    <div class="x_panel">
+                      <div class="x_title">
+                        <h2>CO2 graph <small>in PPM vs time</small></h2>
+                        <ul class="nav navbar-right panel_toolbox">
+                          <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                          </li>
+                          <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                            <ul class="dropdown-menu" role="menu">
+                              <li><a href="#">Settings 1</a>
+                              </li>
+                              <li><a href="#">Settings 2</a>
+                              </li>
+                            </ul>
+                          </li>
+                          <li><a class="close-link"><i class="fa fa-close"></i></a>
+                          </li>
+                        </ul>
+                        <div class="clearfix"></div>
+                      </div>
+                      <div class="x_content">
+                      <!--co2Chart-->
+                      <canvas id="co2Chart"></canvas>  
+                      </div>
+                    </div>
+                  </div>
+                </div>
+               
+            <!-- /page content -->
+    
+            <!-- footer content -->
+            <footer>
+              <div class="pull-right">
+               AQMS - V_1.0 by HackerElite <a href="#">UANL</a>
+              </div>
+              <div class="clearfix"></div>
+            </footer>
+            <!-- /footer content -->
+          </div> 
+        </div>
+<script src="jquery-3.3.1.min.js"></script>
+<!-- Latest compiled and minified JavaScript -->
+<script src="/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+<!-- Custom Theme Scripts -->
+<script src="/build/js/custom.min.js"></script>
+<script src="/socket.io/socket.io.js" charset= "utf-8"></script>
+<!----<script src="/node_modules/easytimer.js/dist/easytimer.min.js"></script> -->
+<!-- Chart.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js" charset="utf-8"></script>
+   <script>
+        const socket= io();
+        //let timer = new Timer();
+        //TVOC chart
+        let counter=0;
+        //timer.start({precision: 'seconds'});
+socket.on("arduino:tvoc",(arduinoData)=>{
+    //secondsPassed = timer.getTotalTimeValues().seconds;
+    //console.log(secondsPassed);
+    myChart.data.labels.push(counter);
+    myChart.data.datasets.forEach(dataset => {
+        dataset.data.push(arduinoData.value);
+    });    
+    counter++;
+    if (counter > 30){
+        myChart.data.labels.shift(counter);
+        myChart.data.datasets.forEach(dataset => {
+            dataset.data.shift(arduinoData.value);
+        });    
+    }
+    myChart.update();
+});
+var ctx = document.getElementById("tvocChart").getContext('2d');
+var myChart = new Chart(ctx, {
+type: 'line',
+data: {
+labels: ["TVOC"],
+datasets: [{
+    label: 'tvoc',
+    backgroundColor:'rgba(254, 90, 0, 0.5)',
+    borderColor: 'rgba(255, 159, 64, 1)',
+    borderWidth: 1,
+    data: [0,5,10,15,20,25,30,35,40,45,50]
+}]
+},
+options: {
+scales: {
+    yAxes: [{
+        ticks: {
+            beginAtZero:true
+        }
+    }]
+}
+}
+});
+
+// CO2 chart
+let counterCo=0;
+    socket.on("arduino:co2",(arduinoData)=>{
+        //secondsPassed = timer.getTotalTimeValues().seconds;
+        //console.log(secondsPassed);
+       co2Chart.data.labels.push(counterCo);
+       co2Chart.data.datasets.forEach(dataset => {
+            dataset.data.push(arduinoData.value);
+        });    
+        counterCo++;
+        if (counterCo > 30){
+            co2Chart.data.labels.shift(counterCo);
+            co2Chart.data.datasets.forEach(dataset => {
+                dataset.data.shift(arduinoData.value);
+            });    
+        }
+        co2Chart.update();
+    });
+    var ctx = document.getElementById("co2Chart").getContext('2d');
+    var co2Chart = new Chart(ctx, {
+    type: 'line',
+    data: {
+    labels: ["CO2"],
+    datasets: [{
+        label: 'co2',
+        backgroundColor:'rgba(59, 99, 210, 0.5)',
+        borderColor: 'rgba(31, 53, 112, 1)',
+        borderWidth: 1,
+        data: [0,5,10,15,20,25,30,35,40,45,50]
+    }]
+    },
+    options: {
+    scales: {
+        yAxes: [{
+            ticks: {
+                beginAtZero:true
+            }
+        }]
+    }
+    }
+    });
+        </script>
+</body>
+</html>
