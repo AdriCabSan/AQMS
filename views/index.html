@@ -18,6 +18,9 @@
     <body>
       <div class="wrapper">
         <header>
+            <div class ="logo-container">
+                <img src="/images/LOGO.png">
+            </div>
             <div class="container clearfix">
                 <h1>Overview <span>Noviembre 14, 2018</span><!--<a class="button">Cambiar Rango de Fecha</a></h1>-->
             </div>
@@ -25,21 +28,21 @@
 
         <div class="container clearfix">
           <!--TVOC CHART-->
-          <div class="third widget line">
-            <div class="chart-legend">
-                <h3>TVOC in PPM vs Seg</h3>
+            <div class="third widget line">
+                <div class="chart-legend">
+                <h3>TVOC</h3>
                  <!-- <p><span>Esta semana</span> &mdash; <strong>Semana Pasada</strong></p>
                <p><a href="" class="button">Cambiar Rango de Fechas</a><a href="" class="button">Filtrar por Ubicacion</a></p> -->
+                </div>
+                <div class="canvas-container">
+                    <canvas id="tvocChart"></canvas>
+                </div>
             </div>
-            <div class="canvas-container">
-                <canvas id="tvocChart"></canvas>
-            </div>
-        </div>
 
         <!--Co2 CHART-->
         <div class="third widget line">
             <div class="chart-legend">
-                <h3>Co2 en PPM vs Seg</h3>
+                <h3>Co2</h3>
                <!-- <p><span>Esta semana</span> &mdash; <strong>Semana Pasada</strong></p>
                 <p><a href="" class="button">Cambiar Rango de Fechas</a><a href="" class="button">Filtrar por Ubicacion</a></p>-->
             </div>
@@ -70,9 +73,8 @@
                     <canvas id="tempChart"></canvas>
                 </div>
             </div>
-
+            
         </div>
-        <div class="push"></div>
       </div>
     
     
@@ -84,6 +86,7 @@
               <div class="clearfix"></div>
             </footer>
             <!-- /footer content -->
+
 <script src="/js/jquery-3.3.1.min.js"></script>
 <!-- Latest compiled and minified JavaScript -->
 <script src="/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
@@ -94,39 +97,98 @@
 <!-- Chart.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js" charset="utf-8"></script>
    <script>
+       //creating a plugin that draws a background color to the charts
+       Chart.pluginService.register({
+			beforeDraw: function (chart, easing) {
+				if (chart.config.options.chartArea && chart.config.options.chartArea.backgroundColor) {
+					var helpers = Chart.helpers;
+					var ctx = chart.chart.ctx;
+					var chartArea = chart.chartArea;
+
+					ctx.save();
+					ctx.fillStyle = chart.config.options.chartArea.backgroundColor;
+					ctx.fillRect(chartArea.left, chartArea.top, chartArea.right - chartArea.left, chartArea.bottom - chartArea.top);
+					ctx.restore();
+				}
+			}
+		});
+        let currentStatus = (isAcceptable,isRegular,isBad,isToxic)=>{
+            let status="";
+                if(isAcceptable){ status = "acceptable";}
+                if(isRegular){ status = "regular";}
+                if(isBad){ status = "bad";}
+                if(isToxic){ status = "toxic";}
+            return status;
+        }
+        let tvocStatus= (data)=>{
+            let isAcceptable= data < 0.2;
+            let isRegular = data >=0.2 && data < 3;
+            let isBad = data >=3 && data < 25;
+            let isToxic = data > 25;
+            return currentStatus(isAcceptable,isRegular,isBad,isToxic);
+        };
+
+        let co2Status= (data)=>{
+            let isAcceptable= data < 0.2;
+            let isRegular = data >=0.2 && data < 3;
+            let isBad = data >=3 && data < 25;
+            let isToxic = data > 25;
+            return currentStatus(isAcceptable,isRegular,isBad,isToxic);
+        };
+        function enviromentStatus(arduinoData,statusType){
+            return statusType(arduinoData);
+        }
+
+        let setStatus=(chart,statusType,arduinoData)=>{
+            if (enviromentStatus(arduinoData,statusType)=="acceptable"){
+                chart.options.chartArea.backgroundColor = colors.green
+            }
+            if (enviromentStatus(arduinoData,statusType)=="regular"){
+                chart.options.chartArea.backgroundColor = colors.blue
+            }
+            if (enviromentStatus(arduinoData,statusType)=="bad"){
+                chart.options.chartArea.backgroundColor = colors.yellow
+            }
+            if (enviromentStatus(arduinoData,statusType)=="toxic"){
+                chart.options.chartArea.backgroundColor = colors.red
+            }  
+        }
+        let colors = {
+            green:'rgba(57, 232, 0, 0.40)',
+            blue:'rgba(20, 98, 255, 0.50)',
+            yellow:'rgba(255, 263, 134, 0.70)',
+            red: 'rgba(232, 44, 12, 0.87)'
+        }
         const socket= io();
-        //let timer = new Timer();
 //TVOC chart
         let counter=0;
-        //timer.start({precision: 'seconds'});
 socket.on("arduino:tvoc",(arduinoData)=>{
-    //secondsPassed = timer.getTotalTimeValues().seconds;
-    //console.log(secondsPassed);
-    myChart.data.labels.push(counter);
-    myChart.data.datasets.forEach(dataset => {
+    setStatus(tvocChart,tvocStatus,arduinoData);
+    tvocChart.data.labels.push(counter);
+    tvocChart.data.datasets.forEach(dataset => {
         dataset.data.push(arduinoData.value);
     });    
     counter++;
     if (counter > 13){
-        myChart.data.labels.shift(counter);
-        myChart.data.datasets.forEach(dataset => {
+        tvocChart.data.labels.shift(counter);
+        tvocChart.data.datasets.forEach(dataset => {
             dataset.data.shift(arduinoData.value);
         });    
     }
-    myChart.update();
+    tvocChart.update();
 });
 //TVOC chart DEFINITION
 var ctx = document.getElementById("tvocChart").getContext('2d');
-var myChart = new Chart(ctx, {
+var tvocChart = new Chart(ctx, {
 type: 'line',
 data: {
 labels: ["TVOC"],
 datasets: [{
-    label: 'tvoc',
+    label: 'ppb vs seg',
     backgroundColor:'rgba(254, 90, 0, 0.5)',
     borderColor: 'rgba(255, 159, 64, 1)',
     borderWidth: 1,
-    data: [0,5,10,15,20,25,30,35,40,45,50]
+    //data: [0,5,10,15,20,25,30,35,40,45,50,55,60,70,75,80]
 }]
 },
 options: {
@@ -143,8 +205,7 @@ scales: {
 // CO2 chart
 let counterCo=0;
     socket.on("arduino:co2",(arduinoData)=>{
-        //secondsPassed = timer.getTotalTimeValues().seconds;
-        //console.log(secondsPassed);
+    setStatus(co2Chart,co2Status,arduinoData);
        co2Chart.data.labels.push(counterCo);
        co2Chart.data.datasets.forEach(dataset => {
             dataset.data.push(arduinoData.value);
@@ -165,11 +226,11 @@ let counterCo=0;
     data: {
     labels: ["CO2"],
     datasets: [{
-        label: 'co2',
+        label: 'ppm vs seg',
         backgroundColor:'rgba(59, 99, 210, 0.5)',
         borderColor: 'rgba(31, 53, 112, 1)',
         borderWidth: 1,
-        data: [0,5,10,15,20,25,30,35,40,45,50]
+        //data: [400,600,800,1000,1200,1400,1600,1800,2000,2200,2400]
     }]
     },
     options: {
@@ -208,11 +269,11 @@ let counterHum=0;
     data: {
     labels: ["Humidity"],
     datasets: [{
-        label: 'hum',
+        label: '% vs seg',
         backgroundColor:'rgba(59, 99, 210, 0.5)',
         borderColor: 'rgba(31, 53, 112, 1)',
         borderWidth: 1,
-        data: [0,5,10,15,20,25,30,35,40,45,50]
+        //data: [0,5,10,15,20,25,30,35,40,45,50,55,60,65,70,75,80,85,90,95,100]
     }]
     },
     options: {
@@ -255,7 +316,7 @@ let counterTemp=0;
         backgroundColor:'rgba(59, 99, 210, 0.5)',
         borderColor: 'rgba(31, 53, 112, 1)',
         borderWidth: 1,
-        data: [-20,-15,-10,-5,0,5,10,15,20,25,30,35]
+        //data: [-35,-30,-25,-20,-15,-10,-5,0,5,10,15,20,25,30,35]
     }]
     },
     options: {
