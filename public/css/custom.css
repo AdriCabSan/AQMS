@@ -40,6 +40,7 @@ header {
     background: #637b85;
     color: #fff;
     margin-bottom: 40px;
+    box-sizing: border-box;
 }
 header span {
     font-weight: 200;
@@ -47,6 +48,13 @@ header span {
 header .button {
     font-size: 0.2em;
     top: -6px;
+}
+header .logo-container{
+    float: left;
+}
+header .logo-container img{
+    height: 80px;
+    transition: 0.5s;
 }
  
 /* various containers */
