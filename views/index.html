@@ -4,7 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <!--FAVICON-->
+    <link rel="apple-touch-icon" sizes="57x57" href="/images/ehecatlLogo.ico/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/images/ehecatlLogo.ico/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/images/ehecatlLogo.ico/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/images/ehecatlLogo.ico/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/images/ehecatlLogo.ico/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/images/ehecatlLogo.ico/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/images/ehecatlLogo.ico/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/images/ehecatlLogo.ico/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/ehecatlLogo.ico/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/images/ehecatlLogo.ico/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/ehecatlLogo.ico/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/images/ehecatlLogo.ico/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/ehecatlLogo.ico/favicon-16x16.png">
+    <link rel="manifest" href="/images/ehecatlLogo.ico/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/images/ehecatlLogo.ico/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+
+    <title>AQMS</title>
     <!-- Bootstrap -->
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="/bootstrap-3.3.7-dist/css/bootstrap.min.css" type="text/css">
@@ -97,6 +116,13 @@
 <!-- Chart.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js" charset="utf-8"></script>
    <script>
+       //colors object
+       const colors = {
+            green:'rgba(57, 232, 0, 0.40)',
+            blue:'rgba(20, 98, 255, 0.50)',
+            yellow:'rgba(255, 263, 134, 0.70)',
+            red: 'rgba(232, 44, 12, 0.87)'
+        };
        //creating a plugin that draws a background color to the charts
        Chart.pluginService.register({
 			beforeDraw: function (chart, easing) {
@@ -141,24 +167,19 @@
 
         let setStatus=(chart,statusType,arduinoData)=>{
             if (enviromentStatus(arduinoData,statusType)=="acceptable"){
-                chart.options.chartArea.backgroundColor = colors.green
+                chart.options.chartArea.backgroundColor = colors.green;
             }
             if (enviromentStatus(arduinoData,statusType)=="regular"){
-                chart.options.chartArea.backgroundColor = colors.blue
+                chart.options.chartArea.backgroundColor = colors.blue;
             }
             if (enviromentStatus(arduinoData,statusType)=="bad"){
-                chart.options.chartArea.backgroundColor = colors.yellow
+                 chart.options.tooltips.backgroundColor = colors.yellow;
             }
             if (enviromentStatus(arduinoData,statusType)=="toxic"){
-                chart.options.chartArea.backgroundColor = colors.red
+                chart.options.chartArea.backgroundColor = colors.red;
             }  
         }
-        let colors = {
-            green:'rgba(57, 232, 0, 0.40)',
-            blue:'rgba(20, 98, 255, 0.50)',
-            yellow:'rgba(255, 263, 134, 0.70)',
-            red: 'rgba(232, 44, 12, 0.87)'
-        }
+        
         const socket= io();
 //TVOC chart
         let counter=0;

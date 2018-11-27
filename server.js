@@ -28,7 +28,7 @@ io.on('connection',()   => console.log('A new socket has connected'));
 mySerial.on("data",data => {
 
     dataStream=data.toString();
-    console.log(dataStream);
+    
     let arr = dataStream.split(",").map(item => item.trim());
     temperature=arr[0];     
     humidity = arr[1];
@@ -36,6 +36,7 @@ mySerial.on("data",data => {
     tVOC = arr[3];
     
     console.log(`Temp:${temperature}, humidity:${humidity}, Co2:${Co2}, TVOC:${tVOC}`);
+    this.log({test: 'log'}, 'Air Quality');
 
     io.emit('arduino:temp',{
         value:temperature
@@ -53,3 +54,17 @@ mySerial.on("data",data => {
 });
 mySerial.on("err",err   => console.log(err.message));
 mySerial.on("open",()   => console.log("Opened Serial Port"));
+
+
+this.log = function() {
+    var args = [];
+    args.push('[' + new Date().toUTCString() + '] ');
+    //now add all the other arguments that were passed in:
+    for (var _i = 0, _len = arguments.length; _i < _len; _i++) {
+      arg = arguments[_i];
+      args.push(arg);
+    }
+
+    //pass it all into the "real" log function
+   // window.console.log.apply(window.console, args); 
+}
