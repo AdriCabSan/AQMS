@@ -41,7 +41,7 @@
                 <img src="/images/LOGO.png">
             </div>
             <div class="container clearfix">
-                <h1>Overview <span>Noviembre 14, 2018</span><!--<a class="button">Cambiar Rango de Fecha</a></h1>-->
+                <h1>Overview <span id="currentDate">Noviembre 14, 2018</span><!--<a class="button">Cambiar Rango de Fecha</a></h1>-->
             </div>
         </header>
 
@@ -49,7 +49,7 @@
           <!--TVOC CHART-->
             <div class="third widget line">
                 <div class="chart-legend">
-                <h3>TVOC</h3>
+                    <h3>TVOC</h3>
                  <!-- <p><span>Esta semana</span> &mdash; <strong>Semana Pasada</strong></p>
                <p><a href="" class="button">Cambiar Rango de Fechas</a><a href="" class="button">Filtrar por Ubicacion</a></p> -->
                 </div>
@@ -109,6 +109,7 @@
 <script src="/js/jquery-3.3.1.min.js"></script>
 <!-- Latest compiled and minified JavaScript -->
 <script src="/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+<script src="/js/dates.js"></script>
 <!-- Custom Theme Scripts -->
 <script src="/js/chartResize.js"></script>
 <script src="/socket.io/socket.io.js" charset= "utf-8"></script>
@@ -124,20 +125,7 @@
             red: 'rgba(232, 44, 12, 0.87)'
         };
        //creating a plugin that draws a background color to the charts
-       Chart.pluginService.register({
-			beforeDraw: function (chart, easing) {
-				if (chart.config.options.chartArea && chart.config.options.chartArea.backgroundColor) {
-					var helpers = Chart.helpers;
-					var ctx = chart.chart.ctx;
-					var chartArea = chart.chartArea;
-
-					ctx.save();
-					ctx.fillStyle = chart.config.options.chartArea.backgroundColor;
-					ctx.fillRect(chartArea.left, chartArea.top, chartArea.right - chartArea.left, chartArea.bottom - chartArea.top);
-					ctx.restore();
-				}
-			}
-		});
+      
         let currentStatus = (isAcceptable,isRegular,isBad,isToxic)=>{
             let status="";
                 if(isAcceptable){ status = "acceptable";}
@@ -155,10 +143,10 @@
         };
 
         let co2Status= (data)=>{
-            let isAcceptable= data < 0.2;
-            let isRegular = data >=0.2 && data < 3;
-            let isBad = data >=3 && data < 25;
-            let isToxic = data > 25;
+            let isAcceptable= data < 500;
+            let isRegular = data >=500 && data < 600;
+            let isBad = data >=600 && data < 800;
+            let isToxic = data > 800;
             return currentStatus(isAcceptable,isRegular,isBad,isToxic);
         };
         function enviromentStatus(arduinoData,statusType){
@@ -167,16 +155,16 @@
 
         let setStatus=(chart,statusType,arduinoData)=>{
             if (enviromentStatus(arduinoData,statusType)=="acceptable"){
-                chart.options.chartArea.backgroundColor = colors.green;
+                chart.data.datasets[0].backgroundColor = colors.green;
             }
             if (enviromentStatus(arduinoData,statusType)=="regular"){
-                chart.options.chartArea.backgroundColor = colors.blue;
+                chart.data.datasets[0].backgroundColor= colors.blue;
             }
             if (enviromentStatus(arduinoData,statusType)=="bad"){
-                 chart.options.tooltips.backgroundColor = colors.yellow;
+                chart.data.datasets[0].backgroundColor = colors.yellow;
             }
             if (enviromentStatus(arduinoData,statusType)=="toxic"){
-                chart.options.chartArea.backgroundColor = colors.red;
+                chart.data.datasets[0].backgroundColor = colors.red;
             }  
         }
         
@@ -184,7 +172,7 @@
 //TVOC chart
         let counter=0;
 socket.on("arduino:tvoc",(arduinoData)=>{
-    setStatus(tvocChart,tvocStatus,arduinoData);
+    setStatus(tvocChart,tvocStatus,arduinoData.value);
     tvocChart.data.labels.push(counter);
     tvocChart.data.datasets.forEach(dataset => {
         dataset.data.push(arduinoData.value);
@@ -226,7 +214,7 @@ scales: {
 // CO2 chart
 let counterCo=0;
     socket.on("arduino:co2",(arduinoData)=>{
-    setStatus(co2Chart,co2Status,arduinoData);
+    setStatus(co2Chart,co2Status,arduinoData.value);
        co2Chart.data.labels.push(counterCo);
        co2Chart.data.datasets.forEach(dataset => {
             dataset.data.push(arduinoData.value);
