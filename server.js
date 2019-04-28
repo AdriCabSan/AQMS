@@ -23,7 +23,12 @@ app.get('/',(req,res,next)=> {
 });
 
 
-server.listen(3000,()   => console.log('server on port: ',3000));
+
+
+const LOCAL_SERVER_PORT = 3000;
+
+app.set('port',process.env.PORT || LOCAL_SERVER_PORT);
+server.listen(app.get('port'),() => console.log(`server on port: ${app.get('port')}`));
 
 // middleware to use for all requests
 router.use(function(req, res, next) {
