@@ -1,59 +1,90 @@
 const express = require('express');
 const socketIO=require('socket.io');
+const bodyParser = require('body-parser')
+
 const http = require('http');
 
 const app = express();
 const server =  http.createServer(app);
 const io = socketIO.listen(server);
-
-let temperature,tVOC,Co2,humidity;
-
+var router = express.Router();              // get an instance of the express Router
+//var reading     = require('./app/models/nmcuReading');
 app.use(express.static('public/'));
+app.use(bodyParser.json())
+app.use(
+  bodyParser.urlencoded({
+    extended: true,
+  })
+)
+app.use('/api', router);
+
 app.get('/',(req,res,next)=> {
     res.sendFile(__dirname + '/views/index.html');
 });
 
-const SerialPort = require('serialport');
-const Readline = SerialPort.parsers.Readline;
-const parser = new Readline();
-
-const mySerial = new SerialPort("COM4",{
-    baudRate:9600
-});
-
 
 server.listen(3000,()   => console.log('server on port: ',3000));
-io.on('connection',()   => console.log('A new socket has connected'));
 
-mySerial.on("data",data => {
+// middleware to use for all requests
+router.use(function(req, res, next) {
+    // do logging
+    console.log('Something is happening.');
+    next(); // make sure we go to the next routes and don't stop here
+});
+var Reading = {
+    temp: 23,
+    tvoc: 3,
+    co2:3,
+    hum:3,
+    temp_sensation:4
+}
+router.get('/', function(req, res) {
+    res.json({ message: 'hooray! welcome to our api!' });   
+});
 
-    dataStream=data.toString();
-    
-    let arr = dataStream.split(",").map(item => item.trim());
-    temperature=arr[0];     
-    humidity = arr[1];
-    Co2= arr[2];
-    tVOC = arr[3];
-    
-    console.log(`Temp:${temperature}, humidity:${humidity}, Co2:${Co2}, TVOC:${tVOC}`);
-    this.log({test: 'log'}, 'Air Quality');
 
+router.route('/aqms').post(function(req,res)
+{
+    console.log(req.body);
+    Reading.temp= req.body.temp;
+    Reading.tvoc= req.body.tvoc;
+    Reading.co2= req.body.co2;
+    Reading.hum= req.body.hum;
+    Reading.temp_sensation= req.body.temp_sensation;
     io.emit('arduino:temp',{
-        value:temperature
+        value:Reading.temp
     });
     io.emit('arduino:tvoc',{
-        value:tVOC
+        value:Reading.tvoc
     });
     io.emit('arduino:co2',{
-        value:Co2
+        value:Reading.co2
     });
     io.emit('arduino:hum',{
-        value:humidity
+        value:Reading.hum   
     });
-    
+
+    res.json({ message: 'created' });
 });
-mySerial.on("err",err   => console.log(err.message));
-mySerial.on("open",()   => console.log("Opened Serial Port"));
+let temperature,tVOC,Co2,humidity;
+io.on('connection',()   => console.log('A new socket has connected'));
+
+/* console.log(`Temp:${temperature}, humidity:${humidity}, Co2:${Co2}, TVOC:${tVOC}`);
+this.log({test: 'log'}, 'Air Quality'); */
+
+io.emit('arduino:temp',{
+    value:temperature
+});
+io.emit('arduino:tvoc',{
+    value:tVOC
+});
+io.emit('arduino:co2',{
+    value:Co2
+});
+io.emit('arduino:hum',{
+    value:humidity
+});
+
 
 
 this.log = function() {
