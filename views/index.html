@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <!--FAVICON-->
+    
     <link rel="apple-touch-icon" sizes="57x57" href="/images/ehecatlLogo.ico/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/images/ehecatlLogo.ico/apple-icon-60x60.png">
     <link rel="apple-touch-icon" sizes="72x72" href="/images/ehecatlLogo.ico/apple-icon-72x72.png">
@@ -23,7 +24,7 @@
     <meta name="msapplication-TileImage" content="/images/ehecatlLogo.ico/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
 
-    <title>AQMS</title>
+    <title>Air Quality Monitoring System</title>
     <!-- Bootstrap -->
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="/bootstrap-3.3.7-dist/css/bootstrap.min.css" type="text/css">
@@ -35,21 +36,291 @@
 
 </head>
     <body>
-      <div class="wrapper">
-        <header>
-            <div class ="logo-container">
+     
+        <div class="vertical-container">
+           <!---- <div class ="logo-container">-->
                 <img src="/images/LOGO.png">
-            </div>
-            <div class="container clearfix">
-                <h1>Overview <span id="currentDate">Noviembre 14, 2018</span><!--<a class="button">Cambiar Rango de Fecha</a></h1>-->
-            </div>
-        </header>
-
+           <!---- </div>-->
+           <!----<div class="container clearfix">-->
+                <h1>  <span id="currentDate">Noviembre 14, 2018</span><!--<a class="button">Cambiar Rango de Fecha</a></h1>-->
+                <div class="symbology">
+                    <ul style="list-style-type:none;">
+                        <li><?xml version="1.0" encoding="iso-8859-1"?>
+                            <!-- Generator: Adobe Illustrator 19.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+                            <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                 viewBox="0 0 368 368" style="enable-background:new 0 0 368 368;" xml:space="preserve">
+                            <g>
+                                <g>
+                                    <path d="M296,48c-39.704,0-72,32.304-72,72c0,4.416,3.576,8,8,8s8-3.584,8-8c0-30.88,25.128-56,56-56s56,25.12,56,56
+                                        s-25.128,56-56,56H8c-4.416,0-8,3.584-8,8s3.584,8,8,8h288c39.704,0,72-32.304,72-72S335.704,48,296,48z"/>
+                                </g>
+                            </g>
+                            <g>
+                                <g>
+                                    <path d="M144,32c-30.88,0-56,25.12-56,56c0,4.416,3.584,8,8,8s8-3.584,8-8c0-22.056,17.944-40,40-40c22.056,0,40,17.944,40,40
+                                        c0,22.056-17.944,40-40,40H8c-4.416,0-8,3.584-8,8s3.584,8,8,8h136c30.88,0,56-25.12,56-56S174.88,32,144,32z"/>
+                                </g>
+                            </g>
+                            <g>
+                                <g>
+                                    <path d="M280,224H8c-4.416,0-8,3.584-8,8c0,4.416,3.584,8,8,8h272c22.056,0,40,17.944,40,40c0,22.056-17.944,40-40,40
+                                        c-22.056,0-40-17.944-40-40c0-4.416-3.576-8-8-8s-8,3.584-8,8c0,30.88,25.128,56,56,56s56-25.12,56-56S310.872,224,280,224z"/>
+                                </g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            </svg>
+                            Buena</li>
+                        <li><?xml version="1.0" encoding="iso-8859-1"?>
+                            <!-- Generator: Adobe Illustrator 19.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+                            <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                 viewBox="0 0 368 368" style="enable-background:new 0 0 368 368;" xml:space="preserve">
+                            <g>
+                                <g>
+                                    <path d="M296,48c-39.704,0-72,32.304-72,72c0,4.416,3.576,8,8,8s8-3.584,8-8c0-30.88,25.128-56,56-56s56,25.12,56,56
+                                        s-25.128,56-56,56H8c-4.416,0-8,3.584-8,8s3.584,8,8,8h288c39.704,0,72-32.304,72-72S335.704,48,296,48z"/>
+                                </g>
+                            </g>
+                            <g>
+                                <g>
+                                    <path d="M144,32c-30.88,0-56,25.12-56,56c0,4.416,3.584,8,8,8s8-3.584,8-8c0-22.056,17.944-40,40-40c22.056,0,40,17.944,40,40
+                                        c0,22.056-17.944,40-40,40H8c-4.416,0-8,3.584-8,8s3.584,8,8,8h136c30.88,0,56-25.12,56-56S174.88,32,144,32z"/>
+                                </g>
+                            </g>
+                            <g>
+                                <g>
+                                    <path d="M280,224H8c-4.416,0-8,3.584-8,8c0,4.416,3.584,8,8,8h272c22.056,0,40,17.944,40,40c0,22.056-17.944,40-40,40
+                                        c-22.056,0-40-17.944-40-40c0-4.416-3.576-8-8-8s-8,3.584-8,8c0,30.88,25.128,56,56,56s56-25.12,56-56S310.872,224,280,224z"/>
+                                </g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            </svg>Regular</li>
+                        <li><?xml version="1.0" encoding="iso-8859-1"?>
+                            <!-- Generator: Adobe Illustrator 19.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+                            <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                 viewBox="0 0 368 368" style="enable-background:new 0 0 368 368;" xml:space="preserve">
+                            <g>
+                                <g>
+                                    <path d="M296,48c-39.704,0-72,32.304-72,72c0,4.416,3.576,8,8,8s8-3.584,8-8c0-30.88,25.128-56,56-56s56,25.12,56,56
+                                        s-25.128,56-56,56H8c-4.416,0-8,3.584-8,8s3.584,8,8,8h288c39.704,0,72-32.304,72-72S335.704,48,296,48z"/>
+                                </g>
+                            </g>
+                            <g>
+                                <g>
+                                    <path d="M144,32c-30.88,0-56,25.12-56,56c0,4.416,3.584,8,8,8s8-3.584,8-8c0-22.056,17.944-40,40-40c22.056,0,40,17.944,40,40
+                                        c0,22.056-17.944,40-40,40H8c-4.416,0-8,3.584-8,8s3.584,8,8,8h136c30.88,0,56-25.12,56-56S174.88,32,144,32z"/>
+                                </g>
+                            </g>
+                            <g>
+                                <g>
+                                    <path d="M280,224H8c-4.416,0-8,3.584-8,8c0,4.416,3.584,8,8,8h272c22.056,0,40,17.944,40,40c0,22.056-17.944,40-40,40
+                                        c-22.056,0-40-17.944-40-40c0-4.416-3.576-8-8-8s-8,3.584-8,8c0,30.88,25.128,56,56,56s56-25.12,56-56S310.872,224,280,224z"/>
+                                </g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            </svg>Mala</li>
+                        <li><?xml version="1.0" encoding="iso-8859-1"?>
+                            <!-- Generator: Adobe Illustrator 19.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+                            <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                 viewBox="0 0 368 368" style="enable-background:new 0 0 368 368;" xml:space="preserve">
+                            <g>
+                                <g>
+                                    <path d="M296,48c-39.704,0-72,32.304-72,72c0,4.416,3.576,8,8,8s8-3.584,8-8c0-30.88,25.128-56,56-56s56,25.12,56,56
+                                        s-25.128,56-56,56H8c-4.416,0-8,3.584-8,8s3.584,8,8,8h288c39.704,0,72-32.304,72-72S335.704,48,296,48z"/>
+                                </g>
+                            </g>
+                            <g>
+                                <g>
+                                    <path d="M144,32c-30.88,0-56,25.12-56,56c0,4.416,3.584,8,8,8s8-3.584,8-8c0-22.056,17.944-40,40-40c22.056,0,40,17.944,40,40
+                                        c0,22.056-17.944,40-40,40H8c-4.416,0-8,3.584-8,8s3.584,8,8,8h136c30.88,0,56-25.12,56-56S174.88,32,144,32z"/>
+                                </g>
+                            </g>
+                            <g>
+                                <g>
+                                    <path d="M280,224H8c-4.416,0-8,3.584-8,8c0,4.416,3.584,8,8,8h272c22.056,0,40,17.944,40,40c0,22.056-17.944,40-40,40
+                                        c-22.056,0-40-17.944-40-40c0-4.416-3.576-8-8-8s-8,3.584-8,8c0,30.88,25.128,56,56,56s56-25.12,56-56S310.872,224,280,224z"/>
+                                </g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            </svg>Muy mala</li>
+                            <li><?xml version="1.0" encoding="iso-8859-1"?>
+                                <!-- Generator: Adobe Illustrator 19.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+                                <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                     viewBox="0 0 368 368" style="enable-background:new 0 0 368 368;" xml:space="preserve">
+                                <g>
+                                    <g>
+                                        <path d="M296,48c-39.704,0-72,32.304-72,72c0,4.416,3.576,8,8,8s8-3.584,8-8c0-30.88,25.128-56,56-56s56,25.12,56,56
+                                            s-25.128,56-56,56H8c-4.416,0-8,3.584-8,8s3.584,8,8,8h288c39.704,0,72-32.304,72-72S335.704,48,296,48z"/>
+                                    </g>
+                                </g>
+                                <g>
+                                    <g>
+                                        <path d="M144,32c-30.88,0-56,25.12-56,56c0,4.416,3.584,8,8,8s8-3.584,8-8c0-22.056,17.944-40,40-40c22.056,0,40,17.944,40,40
+                                            c0,22.056-17.944,40-40,40H8c-4.416,0-8,3.584-8,8s3.584,8,8,8h136c30.88,0,56-25.12,56-56S174.88,32,144,32z"/>
+                                    </g>
+                                </g>
+                                <g>
+                                    <g>
+                                        <path d="M280,224H8c-4.416,0-8,3.584-8,8c0,4.416,3.584,8,8,8h272c22.056,0,40,17.944,40,40c0,22.056-17.944,40-40,40
+                                            c-22.056,0-40-17.944-40-40c0-4.416-3.576-8-8-8s-8,3.584-8,8c0,30.88,25.128,56,56,56s56-25.12,56-56S310.872,224,280,224z"/>
+                                    </g>
+                                </g>
+                                <g>
+                                </g>
+                                <g>
+                                </g>
+                                <g>
+                                </g>
+                                <g>
+                                </g>
+                                <g>
+                                </g>
+                                <g>
+                                </g>
+                                <g>
+                                </g>
+                                <g>
+                                </g>
+                                <g>
+                                </g>
+                                <g>
+                                </g>
+                                <g>
+                                </g>
+                                <g>
+                                </g>
+                                <g>
+                                </g>
+                                <g>
+                                </g>
+                                <g>
+                                </g>
+                                </svg>Extremadamente mala</li>
+                      </ul>  
+                </div>
+                <!---- </div>>-->
+        </div>
+ <div class="wrapper">    
         <div class="container clearfix">
           <!--TVOC CHART-->
             <div class="third widget line">
                 <div class="chart-legend">
-                    <h3>TVOC</h3>
+                        <h3><img src="/images/gas.png" width="41" height="48"> TVOC</h3>
                  <!-- <p><span>Esta semana</span> &mdash; <strong>Semana Pasada</strong></p>
                <p><a href="" class="button">Cambiar Rango de Fechas</a><a href="" class="button">Filtrar por Ubicacion</a></p> -->
                 </div>
@@ -61,7 +332,7 @@
         <!--Co2 CHART-->
         <div class="third widget line">
             <div class="chart-legend">
-                <h3>Co2</h3>
+                <h3><img src="/images/co2.png" width="41" height="48"> CO<sub>2</sub></h3>
                <!-- <p><span>Esta semana</span> &mdash; <strong>Semana Pasada</strong></p>
                 <p><a href="" class="button">Cambiar Rango de Fechas</a><a href="" class="button">Filtrar por Ubicacion</a></p>-->
             </div>
@@ -69,11 +340,12 @@
                 <canvas id="co2Chart"></canvas>
             </div>
         </div>
-
+        </div>
+        <div class="container clearfix">
          <!--HUMIDITY CHART-->
-         <div class="third widget line">
+           <div class="third widget line">
                 <div class="chart-legend">
-                    <h3>Humedad</h3>
+                    <h3><img src="/images/watering.png" width="41" height="48"> Humedad</h3>
  <!-- <p><span>Esta semana</span> &mdash; <strong>Semana Pasada</strong></p>
                 <p><a href="" class="button">Cambiar Rango de Fechas</a><a href="" class="button">Filtrar por Ubicacion</a></p>-->                </div>
                 <div class="canvas-container">
@@ -84,7 +356,7 @@
             <!--Temperature CHART-->
             <div class="third widget line">
                 <div class="chart-legend">
-                    <h3>Temperatura</h3>
+                    <h3><img src="/images/thermometer.png" width="41" height="48"> Temperatura</h3>
   <!-- <p><span>Esta semana</span> &mdash; <strong>Semana Pasada</strong></p>
                 <p><a href="" class="button">Cambiar Rango de Fechas</a><a href="" class="button">Filtrar por Ubicacion</a></p>-->
                 </div>
@@ -94,18 +366,17 @@
             </div>
             
         </div>
-      </div>
-    
     
             <!-- footer content -->
             <footer>
-              <div class="pull-right">
-               AQMS - V_1.0 by HackerElite <a href="#">UANL</a>
+              <div class="credits">
+                  Copyright © AQMS 2019 Created by Ehécatl - V2.0
               </div>
-              <div class="clearfix"></div>
-            </footer>
-            <!-- /footer content -->
 
+            </footer>
+
+              <!-- /footer content -->
+    </div>
 <script src="/js/jquery-3.3.1.min.js"></script>
 <!-- Latest compiled and minified JavaScript -->
 <script src="/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
