@@ -37,39 +37,66 @@ router.use(function(req, res, next) {
     next(); // make sure we go to the next routes and don't stop here
 });
 var Reading = {
-    temp: 23,
-    tvoc: 3,
-    co2:3,
-    hum:3,
-    temp_sensation:4
+    ID: 1,
+    CO2: 10,
+    TVOC:44,
+    Mllis: 22,
+    Humidity: 22,
+    Temperature_C: 27,
+    Heat_Index:34
+
 }
 router.get('/', function(req, res) {
     res.json({ message: 'hooray! welcome to our api!' });   
 });
 
+router.use(function timeLog (req, res, next) {
+  console.log('Time: ', Date.now())
+  next()
+})
 
-router.route('/aqms').post(function(req,res)
+router.route('/aqms').post(function(req,res,err)
 {
+    
     console.log(req.body);
-    Reading.temp= req.body.temp;
-    Reading.tvoc= req.body.tvoc;
-    Reading.co2= req.body.co2;
-    Reading.hum= req.body.hum;
-    Reading.temp_sensation= req.body.temp_sensation;
-    io.emit('arduino:temp',{
-        value:Reading.temp
-    });
-    io.emit('arduino:tvoc',{
-        value:Reading.tvoc
-    });
-    io.emit('arduino:co2',{
-        value:Reading.co2
-    });
-    io.emit('arduino:hum',{
-        value:Reading.hum   
-    });
+    Reading.ID= req.body.ID;
+    Reading.CO2= req.body.CO2;
+    Reading.TVOC= req.body.TVOC;
+    Reading.Mllis= req.body.Millis;
+    Reading.Humidity= req.body.Humidity;
+    Reading.Temperature_C= req.body.Temperature_C;
+    Reading.Heat_Index= req.body.Heat_Index;
 
-    res.json({ message: 'created' });
+    var found = Object.keys(Reading).filter(function(key) {
+        return Reading[key] == null;
+      });
+      if (found.length) {
+        res.json({ message: 'received but a value is missing' });
+        return;
+      }
+
+    if (Reading != null){
+        io.emit('arduino:temp',{
+            value:Reading.Temperature_C
+        });
+        io.emit('arduino:tvoc',{
+            value:Reading.TVOC
+        });
+        io.emit('arduino:co2',{
+            value:Reading.CO2
+        });
+        io.emit('arduino:hum',{
+            value:Reading.Humidity   
+        });
+    
+        res.json({ message: 'Reading was received' });
+    }
+    
+
+    else{
+        res.json({ message: 'incorrect values were send' });
+    }
+  
 });
 let temperature,tVOC,Co2,humidity;
 io.on('connection',()   => console.log('A new socket has connected'));
