@@ -37,12 +37,18 @@
 </head>
 <body>
 
-    <aside class="d-flex d-sm-flex d-lg-flex justify-content-center align-items-center justify-content-sm-center align-items-sm-center justify-content-lg-center align-items-lg-center justify-content-xl-center align-items-xl-center" 
+    <aside class="d-flex d-sm-flex flex-row d-lg-flex justify-content-center align-items-center justify-content-sm-center
+     align-items-sm-center justify-content-lg-center align-items-lg-center justify-content-xl-center align-items-xl-center" 
     style="height: 120px;background-color: #269d9d;">
-    <img class="img-fluid d-lg-flex align-self-center" src="images/LOGO.png" width="100" height="100">
-    <h1 class="text-white d-lg-flex align-self-center">
-        <span id="currentDate">dia-mes-año</span>
-    </h1>
+    <div style="float: right; display: inline; width: 50%">
+            <img class="img-fluid d-lg-flex align-self-center" src="images/LOGO.png" width="100" height="100">
+    </div>
+
+    <div style="float: right; display: inline; width: 50%">
+            <h1 style="color: white" class="text-white d-lg-flex align-self-center">
+                    <span id="currentDate">dia-mes-año</span>
+                </h1>
+    </div>
     </aside>
 
     <div class="d-xl-flex" style="margin-top: 50px;">
@@ -121,16 +127,16 @@
         <div class="d-lg-flex d-xl-flex justify-content-lg-start align-items-lg-center justify-content-xl-start align-items-xl-center"><img src="images/buena.png">
             <h2 style="color: #008751;margin-left: 20px;">Buena</h2>
         </div>
-        <div class="d-lg-flex d-xl-flex justify-content-lg-start align-items-lg-center justify-content-xl-start align-items-xl-center"><img src="images/regular.png">
+        <div class="d-lg-flex d-xl-flex justify-content-lg-start align-items-lg-center justify-content-xl-start align-items-xl-center status"><img src="images/regular.png">
             <h2 style="color: #d6e80f;margin-left: 20px;">Regular</h2>
         </div>
-        <div class="d-lg-flex d-xl-flex justify-content-lg-start align-items-lg-center justify-content-xl-start align-items-xl-center"><img src="images/mala.png">
+        <div class="d-lg-flex d-xl-flex justify-content-lg-start align-items-lg-center justify-content-xl-start align-items-xl-center status"><img src="images/mala.png">
             <h2 style="color: #f9603a;margin-left: 20px;">Mala</h2>
         </div>
-        <div class="d-lg-flex d-xl-flex justify-content-lg-start align-items-lg-center justify-content-xl-start align-items-xl-center"><img src="images/muymala.png">
+        <div class="d-lg-flex d-xl-flex justify-content-lg-start align-items-lg-center justify-content-xl-start align-items-xl-center status"><img src="images/muymala.png">
             <h2 style="color: #e8112d;margin-left: 20px;">Muy mala</h2>
         </div>
-        <div class="d-lg-flex d-xl-flex justify-content-lg-start align-items-lg-center justify-content-xl-start align-items-xl-center"><img src="images/extremadamentemala.png">
+        <div class="d-lg-flex d-xl-flex justify-content-lg-start align-items-lg-center justify-content-xl-start align-items-xl-center status"><img src="images/extremadamentemala.png">
             <h2 style="color: #4f2170;margin-left: 20px;">Extremadamente mala</h2>
         </div>
     </div>
@@ -177,11 +183,11 @@
     
     let tvocStatus= (data)=>{
         let status = Status
-        Status.isAcceptable = data < 0.2;
-        Status.isRegular = data >=0.2 && data < 3;
-        Status.isBad = data >=3 && data < 15;
-        Status.isVeryBad = data >=15 && data < 25;
-        Status.isToxic = data > 25;
+        Status.isAcceptable = data < 20;
+        Status.isRegular = data >=20 && data < 30;
+        Status.isBad = data >=30 && data < 150;
+        Status.isVeryBad = data >=150 && data < 250;
+        Status.isToxic = data > 250;
         return currentStatus(Status);
     };
 
