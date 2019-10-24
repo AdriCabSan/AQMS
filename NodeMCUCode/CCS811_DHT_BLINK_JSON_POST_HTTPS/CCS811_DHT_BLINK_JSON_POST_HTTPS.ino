@@ -35,7 +35,8 @@ void setup() {
   }
   
   WiFi.mode(WIFI_STA);
-  WiFiMulti.addAP("SSID", "PASSWORD");
+  //WiFiMulti.addAP("linksys IOT",NULL);
+  WiFiMulti.addAP("HUAWEI P30 lite","zelda800");
 }
 
 void loop() {
