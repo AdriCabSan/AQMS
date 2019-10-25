@@ -23,8 +23,8 @@ int value = 0;
 Adafruit_SHT31 sht31 = Adafruit_SHT31();
 
 //"HUAWEI P30 lite","zelda800"
-const char* ssid = "INFINITUM14CF_2.4";
-const char* password = "p6S9z52dGW";
+const char* ssid = "*****";
+const char* password = "****";
 const char* mqtt_server = "broker.mqtt-dashboard.com";
 mqttPort = 1883;
 mqttUser = "******";
