@@ -229,7 +229,7 @@
         const socket= io();
 //TVOC chart
         let counter=0;
-socket.on("arduino:tvoc",(arduinoData)=>{
+socket.on("mqtt:tvoc",(arduinoData)=>{
     showCurrentEnviromentValue(arduinoData,'maxValueTvoc');
     setStatus(tvocChart,tvocStatus,arduinoData.value);
     tvocChart.data.labels.push(counter);
@@ -273,7 +273,7 @@ scales: {
 
 // CO2 chart
 let counterCo=0;
-    socket.on("arduino:co2",(arduinoData)=>{
+    socket.on("mqtt:co2",(arduinoData)=>{
     showCurrentEnviromentValue(arduinoData,'maxValueCo2');
     setStatus(co2Chart,co2Status,arduinoData.value);
        co2Chart.data.labels.push(counterCo);
@@ -318,7 +318,7 @@ let counterCo=0;
 
     // Humidity chart
 let counterHum=0;
-    socket.on("arduino:hum",(arduinoData)=>{
+    socket.on("mqtt:hum",(arduinoData)=>{
         showCurrentEnviromentValue(arduinoData,'maxValueHum');
         humChart.data.labels.push(counterHum);
         humChart.data.datasets.forEach(dataset => {
@@ -361,7 +361,7 @@ let counterHum=0;
 
 //TEMPERATURE chart
 let counterTemp=0;
-    socket.on("arduino:temp",(arduinoData)=>{
+    socket.on("mqtt:temp",(arduinoData)=>{
         showCurrentEnviromentValue(arduinoData,'maxValueTemp');
         tempChart.data.labels.push(counterTemp);
         tempChart.data.datasets.forEach(dataset => {
