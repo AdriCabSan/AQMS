@@ -2,7 +2,6 @@
 #include "Adafruit_SGP30.h"
 #include <Arduino.h>
 #include <ESP8266WiFi.h>
-#include <ArduinoJson.h>
 #include <PubSubClient.h>
 
 WiFiClient espClient;
@@ -13,9 +12,9 @@ int value = 0;
 
 Adafruit_SGP30 sgp;
 //"HUAWEI P30 lite","zelda800"
-const char* ssid = "****";
-const char* password = "****";
-const char* mqtt_server = "broker.mqtt-dashboard.com";
+const char* ssid = "DANIELA";
+const char* password = "LOque534";
+const char* mqtt_server = "10.100.225.74";
 
 /* return absolute humidity [mg/m^3] with approximation formula
 * @param temperature [°C]
@@ -73,7 +72,6 @@ void reconnect() {
     }
   }
 }
-
 void callback(char* topic, byte* payload, unsigned int length) {
   Serial.print("Message arrived [");
   Serial.print(topic);
@@ -125,8 +123,11 @@ void loop() {
       return;
     }
     char cstr[16];
+    char cstr2[16];
+    char cstr3[16];
+    char cstr4[16];
     char* eco2=itoa(sgp.eCO2, cstr, 10);
-    char* tvoc = itoa(sgp.TVOC, cstr, 10);
+    char* tvoc = itoa(sgp.TVOC, cstr2, 10);
     Serial.print("TVOC "); Serial.print(tvoc); Serial.print(" ppb\t");
     Serial.print("eCO2 "); Serial.print(eco2); Serial.println(" ppm");
 
@@ -135,8 +136,8 @@ void loop() {
       return;
     }
   
-    char* rawH2 = itoa(sgp.rawH2, cstr, 10);
-    char* rawEthanol = itoa(sgp.rawEthanol, cstr, 10);
+    char* rawH2 = itoa(sgp.rawH2, cstr3, 10);
+    char* rawEthanol = itoa(sgp.rawEthanol, cstr4, 10);
     
     Serial.print("Raw H2 "); Serial.print(rawH2); Serial.print(" \t");
     Serial.print("Raw Ethanol "); Serial.print(rawEthanol); Serial.println("");
@@ -153,9 +154,9 @@ void loop() {
       if(client.publish("aqms/ethanol",rawEthanol)){
         Serial.println("published to aqms/ethanol ");
       }
+     
       
-      
-    delay(1000);
+    delay(5000);
 /*
     counter++;
     if (counter == 30) {
