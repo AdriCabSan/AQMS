@@ -23,12 +23,13 @@ int value = 0;
 Adafruit_SHT31 sht31 = Adafruit_SHT31();
 
 //"HUAWEI P30 lite","zelda800"
-const char* ssid = "*****";
-const char* password = "****";
-const char* mqtt_server = "broker.mqtt-dashboard.com";
-mqttPort = 1883;
-mqttUser = "******";
-mqttPassword = "***";
+const char* ssid = "AP1";
+const char* password = "";
+// 192.168.1.102  192.168.1.114
+const char* mqtt_server = "";
+int mqttPort = 1883;
+const char* mqttUser = "";
+const char* mqttPassword = "";
 
 void setup_wifi() {
 
@@ -125,6 +126,6 @@ else{
     Serial.println("Failed to read humidity");
   }
   Serial.println();
-  delay(1000);
+  delay(6000);
 }
 }

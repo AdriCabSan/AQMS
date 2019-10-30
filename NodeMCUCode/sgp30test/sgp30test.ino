@@ -12,9 +12,11 @@ int value = 0;
 
 Adafruit_SGP30 sgp;
 //"HUAWEI P30 lite","zelda800"
-const char* ssid = "DANIELA";
-const char* password = "LOque534";
-const char* mqtt_server = "10.100.225.74";
+const char* ssid = "";
+const char* password = "";
+const char* mqtt_server = "";
+const char* mqttUser = "";
+const char* mqttPassword = "";
 
 /* return absolute humidity [mg/m^3] with approximation formula
 * @param temperature [°C]
